@@ -6,3 +6,15 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+type Position = { x: number, y: number }
+type Size = { width: number, height: number }
+type Moving = { speed: number, direction: 'up' | 'down' }
+type IconPosition = Position
+type Shooter = 'Player' | 'Enemy'
+
+interface GameObject {
+  size: Size
+  position: Position
+  icon: IconPosition
+}
