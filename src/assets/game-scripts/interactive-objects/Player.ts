@@ -1,8 +1,8 @@
-import { GameObjectClass } from "./GameObjectClass";
+import { InteractiveObjectClass } from "./InteractiveObjectClass";
 import { Bullet } from "./Bullet";
-import { Game } from "./Game";
+import { Game } from "../Game";
 
-export class Player extends GameObjectClass {
+export class Player extends InteractiveObjectClass {
 
   private screenWidth: number
   position: Position;
@@ -26,7 +26,7 @@ export class Player extends GameObjectClass {
     if (this.position.x > this.screenWidth) this.position.x = this.screenWidth
   }
 
-  private shoot = (ev: MouseEvent) => {
+  shoot = (ev: MouseEvent) => {
     ev.preventDefault()
     this.data.gameObjects.push(
       new Bullet(

@@ -14,7 +14,7 @@ type IconPosition = Position
 type Shooter = 'Player' | 'Enemy'
 
 interface GameObject {
+  [index: string]: any
   size: Size
   position: Position
-  icon: IconPosition
 }

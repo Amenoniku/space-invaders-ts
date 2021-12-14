@@ -1,6 +1,6 @@
-import { GameObjectClass } from "./GameObjectClass";
+import { InteractiveObjectClass } from "./InteractiveObjectClass";
 
-export class Bullet extends GameObjectClass {
+export class Bullet extends InteractiveObjectClass {
 
   size = { width: 3, height: 6 }
   icon
