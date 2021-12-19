@@ -22,8 +22,6 @@ export class Player extends InteractiveObjectClass {
   }
 
   update(): void {
-    if (this.position.x < 10) this.position.x = 10;
-    if (this.position.x > this.screenWidth) this.position.x = this.screenWidth
   }
 
   shoot = (ev: MouseEvent) => {
@@ -41,6 +39,9 @@ export class Player extends InteractiveObjectClass {
   }
 
   private move = (ev: MouseEvent) => {
-    this.position.x = ev.offsetX - this.size.width / 2;
+    let x = ev.offsetX - this.size.width / 2;
+    if (x < 10) x = 10;
+    if (x > this.screenWidth) x = this.screenWidth
+    this.position.x = x
   }
 }

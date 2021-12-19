@@ -8,7 +8,7 @@ export class Bullet extends InteractiveObjectClass {
   constructor(
     public position: Position,
     protected moving: Moving,
-    shooter: Shooter
+    public shooter: Shooter
   ) {
     super()
     const iconEnemyBullet: IconPosition = { x: 152, y: 65 }

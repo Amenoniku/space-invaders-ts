@@ -1,5 +1,6 @@
 import { Player } from "./interactive-objects/Player"
 import { Enemy } from "./interactive-objects/Enemy"
+import { Bullet } from "./interactive-objects/Bullet"
 import { InteractiveObjectClass } from "./interactive-objects/InteractiveObjectClass";
 
 import { Score } from "./interface-objects/Score"
@@ -40,16 +41,19 @@ export class Game {
     };
     let x: number = 3;
     let y: number = 3;
+    const colCount = 8
+    const rowCount = 5
 
-    for (let rowI = 0; rowI < 8; rowI++) {
-      if (rowI === 0) x = x;
+
+    let colNumber: number = 0;
+    for (let colI = 0; colI < colCount; colI++) {
+      if (colI === 0) x = x;
       else x += size.height + size.height / 3
-      let ind: number = 0;
-      for (let colI = 0; colI < 5; colI++) {
-        ind++;
-        if (colI === 0) y = y
+      colNumber++;
+      for (let rowI = 0; rowI < rowCount; rowI++) {
+        if (rowI === 0) y = y
         else y += size.width + size.width / 3;
-        this.gameObjects.push(new Enemy(this, { x, y }, size, ind));
+        this.gameObjects.push(new Enemy(this, { x, y }, size, colNumber));
       }
       y = 3;
     }
@@ -69,7 +73,6 @@ export class Game {
   private logicTick() {
     this.logicCycle = setInterval(() => {
       this.update()
-      // console.log(this.gameObjects)
     }, 1000 / 60)
   }
 
@@ -99,6 +102,12 @@ export class Game {
   private notCollision = (o1: GameObject): Boolean => {
     if (this.isInterfaceObject(o1)) return true
     return this.gameObjects.filter((o2: GameObject) => {
+      if (o1 instanceof Enemy && o2 instanceof Enemy) return false
+      if (
+        (o1 instanceof Enemy || o2 instanceof Enemy) &&
+        (o1 instanceof Bullet || o2 instanceof Bullet) &&
+        (o1.shooter === 'Enemy' || o2.shooter === 'Enemy')
+      ) return false
       const isColl: Boolean = this.collision(o1, o2);
       if (isColl && o1 instanceof Enemy) {
         this.gameObjects[0].up()

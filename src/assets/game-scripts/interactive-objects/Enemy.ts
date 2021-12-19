@@ -4,15 +4,14 @@ import { Game } from "../Game";
 
 export class Enemy extends InteractiveObjectClass {
 
-  moveX: number = 0
-  speed: number = 1
+  speed: number = 1 + (Math.random() * 3)
   icon: IconPosition
 
   constructor(
     public data: Game,
     public position: Position,
     public size: Size,
-    public ind: number
+    public colNumber: number
   ) {
     super()
     const randomIconsPosition: Position[] = [
@@ -32,29 +31,31 @@ export class Enemy extends InteractiveObjectClass {
   }
 
   update(): void {
-    if (
-      this.moveX < 0 || this.moveX > this.data.screenBox.x / 3) {
-      this.speed = -this.speed;
-    }
-    this.position.x += this.speed;
-    this.moveX += this.speed;
+    this.move()
     this.shoot();
   }
 
-
-  private isLower(enemy: Enemy): Boolean {
-    return this.data.gameObjects.filter(function (o) {
-      return (
-        o instanceof Enemy &&
-        o.position.y > enemy.position.y &&
-        o.position.x - enemy.position.x < enemy.size.width
-      )
-    }).length > 0;
+  private move() {
+    // const enemiesXs = this.data.gameObjects.filter(obj => {
+    //   return obj instanceof Enemy
+    // }).map(o => o.position.x)
+    // const leftmostX: number = Math.min.apply(Math, enemiesXs)
+    // const rightmostX: number = Math.max.apply(Math, enemiesXs)
+    if (
+      this.position.x < 3 ||
+      this.position.x + this.size.width > this.data.screenBox.x - 3
+    ) {
+      this.speed = -this.speed
+    }
+    const x = this.position.x + this.speed
+    this.position.x = x
   }
 
   private shoot() {
-
-    if (Math.random() < 0.01 && !this.isLower(this)) {
+    const enemiesCount = this.data.gameObjects.filter(obj => {
+      return obj instanceof Enemy
+    }).length
+    if (Math.random() < (0.2 / enemiesCount)) {
       const bulletCoors = {
         x: this.position.x + this.size.width / 2,
         y: this.position.y + this.size.height / 2 + this.size.height / 2 + 1
@@ -67,7 +68,11 @@ export class Enemy extends InteractiveObjectClass {
     }
   }
 
-  private move = (ev: MouseEvent) => {
-    this.position.x = ev.offsetX - this.size.width / 2;
+  private isLower(): Boolean {
+    const col = this.data.gameObjects.filter(obj => {
+      return obj instanceof Enemy && obj.colNumber === this.colNumber
+    })
+    const maxYEnemy: number = Math.max.apply(Math, col.map((o) => o.position.y))
+    return this.position.y === maxYEnemy
   }
 }
