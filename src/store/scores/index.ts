@@ -33,5 +33,5 @@ export const store: Module<State, RootState> = {
   state,
   mutations,
   actions,
-  namespaced: true,
+  // namespaced: true,
 }

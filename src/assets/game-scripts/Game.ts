@@ -135,7 +135,7 @@ export class Game {
     if (!lose) {
       this.gameStop = true;
       const score = this.gameObjects[0].score
-      if (this.gameObjects[0].score > 0) store.dispatch('scores/addNewScore', {
+      if (this.gameObjects[0].score > 0) store.dispatch('addNewScore', {
         data: moment().format('MMMM Do YYYY, h:mm:ss'),
         score: this.gameObjects[0].score
       })
