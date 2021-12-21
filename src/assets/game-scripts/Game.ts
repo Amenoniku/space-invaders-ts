@@ -128,7 +128,7 @@ export class Game {
   private endGame(win: Boolean, lose: Boolean) {
     if (!win) {
       alert("Поздравляю!!! Вы победили Инопланетных Захватчиков! Но радары засекли еще одну волну! Нажми \"Ok\" чтобы разгромить врага!");
-      this.gameObjects = []
+      this.gameObjects = this.gameObjects.filter(obj => !(obj instanceof Bullet))
       this.addEnemies();
     }
 
