@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import { Player } from "./interactive-objects/Player"
 import { Enemy } from "./interactive-objects/Enemy"
 import { Bullet } from "./interactive-objects/Bullet"
@@ -6,6 +8,9 @@ import { InteractiveObjectClass } from "./interactive-objects/InteractiveObjectC
 import { Score } from "./interface-objects/Score"
 import { InterfaceObjectClass } from "./interface-objects/InterfaceObjectClass";
 import gameIcons from '../../assets/icons/icons.png'
+
+import { useStore } from '../../store'
+const store = useStore()
 
 export class Game {
   private ctx: CanvasRenderingContext2D
@@ -29,6 +34,7 @@ export class Game {
   }
 
   private addObjects() {
+
     this.gameObjects.push(new Score(this))
     this.gameObjects.push(new Player(this))
     this.addEnemies()
@@ -122,11 +128,16 @@ export class Game {
   private endGame(win: Boolean, lose: Boolean) {
     if (!win) {
       alert("Поздравляю!!! Вы победили Инопланетных Захватчиков! Но радары засекли еще одну волну! Нажми \"Ok\" чтобы разгромить врага!");
+      this.gameObjects = []
       this.addEnemies();
     }
 
     if (!lose) {
       this.gameStop = true;
+      store.dispatch('scores/addNewScore', {
+        data: moment().format('MMMM Do YYYY, h:mm:ss'),
+        score: this.gameObjects[0].score
+      })
       this.gameObjects = [];
       this.addObjects();
       this.gameStop = false;

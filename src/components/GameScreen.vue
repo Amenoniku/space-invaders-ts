@@ -27,7 +27,7 @@ onMounted(() => {
 <style lang='scss' scoped>
 
 .game-screen {
-  margin: 0 auto ;
+  margin: 0 10px;
 	border: 1px solid #B50000;
 }
 

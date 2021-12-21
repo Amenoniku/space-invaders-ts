@@ -36,11 +36,6 @@ export class Enemy extends InteractiveObjectClass {
   }
 
   private move() {
-    // const enemiesXs = this.data.gameObjects.filter(obj => {
-    //   return obj instanceof Enemy
-    // }).map(o => o.position.x)
-    // const leftmostX: number = Math.min.apply(Math, enemiesXs)
-    // const rightmostX: number = Math.max.apply(Math, enemiesXs)
     if (
       this.position.x < 3 ||
       this.position.x + this.size.width > this.data.screenBox.x - 3
