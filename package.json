@@ -12,6 +12,7 @@
     "moment": "^2.29.1",
     "momentjs": "^2.0.0",
     "vue": "^3.2.16",
+    "vue-router": "4",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0"
   },

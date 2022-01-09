@@ -16,8 +16,9 @@ export class Game {
   private ctx: CanvasRenderingContext2D
   screenBox: Position
   gameObjects: GameObject[] = []
-  private gameStop: boolean = false
-  private logicCycle: any = 0
+  public gameStarted: boolean = false
+  private gameStop: boolean = true
+  private logicCycle: any = null
   private icons: HTMLImageElement = new Image
   constructor(public screen: HTMLCanvasElement) {
     this.ctx = this.screen.getContext('2d')!
@@ -26,15 +27,25 @@ export class Game {
   }
 
   public start() {
-    this.icons.onload = () => {
-      this.addObjects()
-      this.renderTick()
+    this.gameStarted = true
+    this.gameStop = false
+    this.addObjects()
+    this.renderTick()
+    this.logicTick()
+  }
+
+  public pauseUnpause() {
+    if (!this.gameStop) {
+      this.gameStop = true
+      clearInterval(this.logicCycle)
+      this.logicCycle = null
+    } else {
+      this.gameStop = false
       this.logicTick()
     }
   }
 
   private addObjects() {
-
     this.gameObjects.push(new Score(this))
     this.gameObjects.push(new Player(this))
     this.addEnemies()
@@ -49,8 +60,6 @@ export class Game {
     let y: number = 3;
     const colCount = 8
     const rowCount = 5
-
-
     let colNumber: number = 0;
     for (let colI = 0; colI < colCount; colI++) {
       if (colI === 0) x = x;
@@ -135,7 +144,7 @@ export class Game {
     if (!lose) {
       this.gameStop = true;
       const score = this.gameObjects[0].score
-      if (this.gameObjects[0].score > 0) store.dispatch('addNewScore', {
+      if (score > 0) store.dispatch('addNewScore', {
         data: moment().format('MMMM Do YYYY, h:mm:ss'),
         score: this.gameObjects[0].score
       })

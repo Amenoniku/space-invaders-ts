@@ -1,30 +1,31 @@
 <template>
 
-<div class="flex">
-  <h3>Таблица рекордов</h3>
-  <div class="scores">
-    <span>Дата</span>
-    <span>Очки</span>
+  <div class="flex">
+    <h3>Таблица рекордов</h3>
+    <div class="scores">
+      <span>Дата</span>
+      <span>Очки</span>
+    </div>
+    <div
+      class="scores"
+      v-for="score in scores"
+    >
+      <span>{{score.data}}</span>
+      <span>{{score.score}}</span>
+    </div>
   </div>
-  <div class="scores" v-for="score in scores">
-    <span>{{score.data}}</span>
-    <span>{{score.score}}</span>
-  </div>
-</div>
 
 </template>
 
 <script setup lang="ts">
-import { computed }  from 'vue'
-import { useStore } from '../store'
+import { computed } from "vue";
+import { useStore } from "../store";
 
-const store = useStore()
-const scores = computed(() => store.state['scores'].scores)
-
+const store = useStore();
+const scores = computed(() => store.state["scores"].scores);
 </script>
 
 <style lang='scss' scoped>
-
 .flex {
   display: flex;
   flex-direction: column;
@@ -42,5 +43,4 @@ h3 {
   display: flex;
   justify-content: space-between;
 }
-
 </style>
