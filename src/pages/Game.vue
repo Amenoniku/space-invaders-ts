@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import GameScreen from "../components/GameScreen.vue";
-import Scores from "../components/Scores.vue";
+import GameScreen from "../components/game/GameScreen.vue";
+import Scores from "../components/game/Scores.vue";
 </script>
 
 <style scoped>

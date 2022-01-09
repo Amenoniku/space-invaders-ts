@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "../store";
+import { useStore } from "../../store";
 
 const store = useStore();
 const scores = computed(() => store.state["scores"].scores);

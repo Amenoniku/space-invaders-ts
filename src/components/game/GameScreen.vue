@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { onBeforeRouteLeave } from "vue-router";
-import { Game } from "../assets/game-scripts/Game";
+import { Game } from "../../assets/game-scripts/Game";
 
 let game: Game;
 const GameScreen = ref(null);
