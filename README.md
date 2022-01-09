@@ -1,7 +1,6 @@
 # Клон игры **Space Invaders** в моем исполнении на Vue 3 + Typescript + Vite.
 
-## Демо
-- [Тык](http://wfb7927c.bget.ru/)
+## [Демо](https://amenoniku.github.io/)
 
 # Vue 3 + Typescript + Vite
 
