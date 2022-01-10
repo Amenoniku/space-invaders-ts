@@ -7,6 +7,7 @@ declare module '*.vue' {
   export default component
 }
 
+// game types
 type Position = { x: number, y: number }
 type Size = { width: number, height: number }
 type Moving = { speed: number, direction: 'up' | 'down' }
@@ -17,4 +18,11 @@ interface GameObject {
   [index: string]: any
   size: Size
   position: Position
+}
+
+// chat type
+type Message = {
+  author: string,
+  data: string,
+  text: string
 }

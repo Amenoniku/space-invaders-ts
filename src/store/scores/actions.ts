@@ -22,9 +22,6 @@ export interface Actions {
 export const actions: ActionTree<State, RootState> & Actions = {
   addNewScore({ commit }, score: Score) {
     console.debug('ADD NEW SCORE', score)
-    const data = {
-      documents: [{}, {}],
-    }
     commit('addScore', score)
   },
 }

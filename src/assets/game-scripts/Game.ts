@@ -24,6 +24,17 @@ export class Game {
     this.ctx = this.screen.getContext('2d')!
     this.screenBox = { x: this.screen.width, y: this.screen.height }
     this.icons.src = gameIcons
+    this.helloSreen()
+
+  }
+
+  private helloSreen() {
+    this.ctx.textAlign = "center"
+    this.ctx.fillStyle = "rgba(255, 255, 255, 1)";
+    this.ctx.font = 'bold 30px Arial';
+    this.ctx.fillText('Клон Space Invaders', this.screenBox.x / 2, (this.screenBox.y / 2) - 35);
+    this.ctx.font = '18px Arial';
+    this.ctx.fillText('Для старта нажми ПКМ', this.screenBox.x / 2, (this.screenBox.y / 2) + 50);
   }
 
   public start() {
