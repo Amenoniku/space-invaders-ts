@@ -36,7 +36,7 @@ const sendMessage: Function = (e: KeyboardEvent) => {
 
 const randomString: Function = (): string => {
   let result: string = ''
-  const characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const characters: string = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0123456789'
   const charactersLength: number = characters.length
   const length: number = Math.floor(Math.random() * charactersLength)
   for ( let i: number = 0; i < length; i++ ) {
