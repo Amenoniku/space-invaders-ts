@@ -11,6 +11,7 @@ export type Mutations<S = State> = {
 export const mutations: MutationTree<State> & Mutations = {
   addMessage(state: State, message: Message) {
     state.messages.push(message)
+    if (state.messages.length > 10) state.messages.shift()
   },
   setUserName(state: State, userName: string) {
     state.userName = userName

@@ -4,17 +4,6 @@ export type State = {
 }
 
 export const state: State = {
-  messages: [
-    {
-      author: 'you',
-      data: 'string',
-      text: 'string'
-    },
-    {
-      author: 'string',
-      data: 'string',
-      text: 'string'
-    }
-  ],
+  messages: [],
   userName: ''
 };

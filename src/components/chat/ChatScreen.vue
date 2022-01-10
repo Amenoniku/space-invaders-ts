@@ -4,7 +4,13 @@
       v-for="message in messages"
       :message="message"
     />
-    <textarea name="textMessage" v-model="textMessage" @keyup.enter="sendMessage($event)" />
+    <textarea
+      class="chat-screen__textarea"
+      name="textMessage"
+      v-model="textMessage"
+      placeholder="Введи сообщение, Enter - отправить"
+      @keyup.enter="sendMessage($event)"
+    />
   </div>
 </template>
 
@@ -51,5 +57,9 @@ const randomString: Function = (): string => {
   justify-content: flex-end;
   overflow-y: auto;
   overflow-x: hidden;
+  &__textarea {
+    min-height: 50px;
+    max-width: 100%;
+  }
 }
 </style>
